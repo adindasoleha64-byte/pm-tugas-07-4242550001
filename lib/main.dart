@@ -27,11 +27,11 @@ List<TugasKuliah> _dataAwal() {
 }
 
 void main() => runApp(
-      ChangeNotifierProvider(
-        create: (_) => TugasModel(awal: _dataAwal()), // satu objek untuk app
-        child: const TugasApp(),
-      ),
-    );
+  ChangeNotifierProvider(
+    create: (_) => TugasModel(awal: _dataAwal()), // satu objek untuk app
+    child: const TugasApp(),
+  ),
+);
 
 final _router = GoRouter(
   initialLocation: '/',
@@ -39,15 +39,22 @@ final _router = GoRouter(
     StatefulShellRoute.indexedStack(
       builder: (context, state, shell) => KerangkaNavigasi(shell: shell),
       branches: [
-        StatefulShellBranch(routes: [
-          GoRoute(path: '/', builder: (context, state) => const HalamanDaftar()),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: '/statistik',
-            builder: (context, state) => const HalamanStatistik(),
-          ),
-        ]),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/',
+              builder: (context, state) => const HalamanDaftar(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/statistik',
+              builder: (context, state) => const HalamanStatistik(),
+            ),
+          ],
+        ),
       ],
     ),
     // Di luar shell: form tampil penuh tanpa navigasi, dibuka dengan push
